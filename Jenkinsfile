@@ -1,6 +1,6 @@
 pipeline {
     agent any
-		 environment {     
+	environment {     
                 HEROKU_API_KEY= credentials('heroku_api_key')
                 IMAGE_NAME= 'staticwebsite-img'
                 IMAGE_TAG= 'latest'
