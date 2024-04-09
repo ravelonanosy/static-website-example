@@ -10,7 +10,6 @@ pipeline {
 		REGISTRY_URL="https://index.docker.io/v1/"
 		USERNAME="ravelonanosy"
 		PASSWORD="gilou7710" 
-		
                  				 
      } 
          stages {
