@@ -7,6 +7,7 @@ pipeline {
                 CONTAINER_NAME= 'staticwebsite-ctnr'
 		ENV_STAGING= 'static-website-staging'
 		ENV_PROD= 'static-website-production'
+			 
                  				 
      } 
          stages {
