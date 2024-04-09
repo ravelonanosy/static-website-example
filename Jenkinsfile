@@ -44,7 +44,7 @@ pipeline {
 							
 							sh '''
        						echo 'test appli URL'
-							    curl http://172.17.0.1:80
+							    curl http://172.17.0.1:8090
 							
 							'''
 						}
