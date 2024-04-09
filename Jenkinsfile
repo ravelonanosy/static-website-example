@@ -29,7 +29,7 @@ pipeline {
 				    
 							sh '''
 							echo  'run a container'
-							docker run -d --name $CONTAINER_NAME -e PORT=80 -p 80:80 ravelonanosy/$IMAGE_NAME:$IMAGE_TAG
+							docker run -d --name $CONTAINER_NAME -e PORT=80 -p 8090:80 $IMAGE_NAME:$IMAGE_TAG
 							docker ps
 							sleep 5
 							
