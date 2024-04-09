@@ -7,7 +7,9 @@ pipeline {
                 CONTAINER_NAME= 'staticwebsite-ctnr'
 		ENV_STAGING= 'static-website-staging'
 		ENV_PROD= 'static-website-production'
-			 
+		REGISTRY_URL="https://index.docker.io/v1/"
+		USERNAME="ravelonanosy"
+		PASSWORD="gilou7710" 
                  				 
      } 
          stages {
@@ -51,7 +53,22 @@ pipeline {
 						}
                  }
                  }
-				 
+
+		  stage('push image') {
+					steps {
+						script {
+							
+							sh '''
+       							echo 'push image to dockerhub'
+							docker login $REGISTRY_URL -u $USERNAME -p $PASSWORD
+       							docker tag $IMAGE_NAME:$IMAGE_TAG ravelonanosy/$IMAGE_NAME:$IMAGE_TAG
+	      						docker push ravelonanosy/$IMAGE_NAME:$IMAGE_TAG
+							
+							'''
+						}
+                 }
+                 }
+		 
 				 stage('delete container') {
 					steps {
 						script {
