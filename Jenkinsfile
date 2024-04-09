@@ -5,8 +5,8 @@ pipeline {
                 IMAGE_NAME= 'staticwebsite-img'
                 IMAGE_TAG= 'latest'
                 CONTAINER_NAME= 'staticwebsite-ctnr'
-		            ENV_STAGING= 'static-website-staging'
-		            ENV_PROD= 'static-website-production'
+		ENV_STAGING= 'static-website-staging'
+		ENV_PROD= 'static-website-production'
                  				 
      } 
          stages {
