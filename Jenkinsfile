@@ -17,9 +17,9 @@ pipeline {
                  steps {
 					script {
                      
-					 sh '''
-					     echo 'build image'
-					     docker build -t $IMAGE_NAME:$IMAGE_TAG .
+					 	sh '''
+					     	echo 'build image'
+					     	docker build -t $IMAGE_NAME:$IMAGE_TAG .
 					 
 					 '''
 					}
@@ -45,8 +45,9 @@ pipeline {
 						script {
 							
 							sh '''
-       						echo 'test appli URL'
-							    curl -I http://172.17.0.1:80
+       
+       							echo 'test appli URL'
+							curl -I http://172.17.0.1:80
 							
 							'''
 						}
@@ -97,8 +98,8 @@ pipeline {
 							sh '''
 								echo 'execute appli on heroku staging'
 								#apk --no-cache add npm
-    						#npm install -g heroku
-	    					npm i -g heroku@7.68.0
+    								#npm install -g heroku
+	    							npm i -g heroku@7.68.0
 								heroku container:login
 								heroku create $ENV_STAGING || echo "project already exist"
 								heroku container:push -a $ENV_STAGING web
