@@ -92,7 +92,7 @@ pipeline {
 				    when {
 						expression { GIT_BRANCH == 'origin/master' }			
 				      }
-                    steps {
+                   		 	steps {
 						script {
                         
 							sh '''
