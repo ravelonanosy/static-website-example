@@ -2,14 +2,14 @@ pipeline {
     agent any
 	environment {     
                 HEROKU_API_KEY= credentials('heroku_api_key')
+		DOCKERHUB_CREDENTIALS=credentials('dockerhub')
                 IMAGE_NAME= 'staticwebsite-img'
                 IMAGE_TAG= 'latest'
                 CONTAINER_NAME= 'staticwebsite-ctnr'
 		ENV_STAGING= 'static-website-staging'
 		ENV_PROD= 'static-website-production'
 		REGISTRY_URL="https://index.docker.io/v1/"
-		USERNAME="ravelonanosy"
-		PASSWORD="xxxxxxxxx" 
+		 
                  				 
      } 
          stages {
@@ -34,8 +34,7 @@ pipeline {
        
 							echo  'run a container'
 							docker run -d --name $CONTAINER_NAME -e PORT=80 -p 8090:80 $IMAGE_NAME:$IMAGE_TAG
-							docker ps
-							sleep 5
+				
 							
 							'''
 						}
@@ -48,7 +47,7 @@ pipeline {
 							
 							sh '''
        						echo 'test appli URL'
-							    curl http://172.17.0.1:8090
+							    curl http://172.17.0.1:80
 							
 							'''
 						}
@@ -61,7 +60,8 @@ pipeline {
 							
 							sh '''
        							echo 'push image to dockerhub'
-							docker login $REGISTRY_URL -u $USERNAME -p $PASSWORD
+							#docker login $REGISTRY_URL -u $USERNAME -p $PASSWORD
+       							echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin
        							docker tag $IMAGE_NAME:$IMAGE_TAG ravelonanosy/$IMAGE_NAME:$IMAGE_TAG
 	      						docker push ravelonanosy/$IMAGE_NAME:$IMAGE_TAG
 							
