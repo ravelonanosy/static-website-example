@@ -20,7 +20,6 @@ pipeline {
 					 sh '''
 					     echo 'build image'
 					     docker build -t $IMAGE_NAME:$IMAGE_TAG .
-               docker images
 					 
 					 '''
 					}
@@ -47,7 +46,7 @@ pipeline {
 							
 							sh '''
        						echo 'test appli URL'
-							    curl http://172.17.0.1:80
+							    curl -I http://172.17.0.1:80
 							
 							'''
 						}
