@@ -2,7 +2,7 @@ pipeline {
     agent any
 	environment {     
                 HEROKU_API_KEY= credentials('heroku_api_key')
-		DOCKERHUB_CREDENTIALS=credentials('dockerhub')
+		DOCKERHUB_CREDENTIALS= credentials('dockerhub')
                 IMAGE_NAME= 'staticwebsite-img'
                 IMAGE_TAG= 'latest'
                 CONTAINER_NAME= 'staticwebsite-ctnr'
@@ -53,15 +53,19 @@ pipeline {
 						}
                  }
                  }
+		stage('Login') {
 
+			steps {
+				sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+			}
+		}
+		 
 		  stage('push image') {
 					steps {
 						script {
 							
 							sh '''
        							echo 'push image to dockerhub'
-							#docker login $REGISTRY_URL -u $USERNAME -p $PASSWORD
-       							echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin
        							docker tag $IMAGE_NAME:$IMAGE_TAG ravelonanosy/$IMAGE_NAME:$IMAGE_TAG
 	      						docker push ravelonanosy/$IMAGE_NAME:$IMAGE_TAG
 							
