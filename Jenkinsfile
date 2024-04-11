@@ -10,7 +10,6 @@ pipeline {
 		ENV_PROD= 'static-website-production'
 		REGISTRY_URL="https://index.docker.io/v1/"
 		
-	
 		               				 
      } 
          stages {
