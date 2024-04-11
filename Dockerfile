@@ -1,5 +1,5 @@
 FROM nginx
-LABEL maintainer='NANJA R.'
+LABEL maintainer='NANJA RAVELO.'
 RUN apt-get update && \
 DEBIAN_FRONTEND=noninteractive apt-get install -y git && \
 rm -Rf /usr/share/nginx/html/*
